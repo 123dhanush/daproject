@@ -1,0 +1,49 @@
+{% load static %}
+<html>
+    <head>
+            <meta charset="utf8">
+            <title>Student login Page</title>
+            <link rel="stylesheet" href='{% static "css/input.css" %}'>
+
+    </head>
+    <body>
+        <form action="slogin/" method="POST">
+            {% csrf_token %}
+          <div class="topbar"><img  class="logo" src='{% static "images/collegelogo.png" %}' width="205px" height="70px" ><span style="z-index: 2;position: fixed;left: 46.5%;top: 4%;font-size: 25px;color:white;justify-content: center;text-align: center;"></span></div>
+            
+        <div id="main">
+            <h1>Student Login</h1>
+            <b>UserName :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="username" name="username"><br><br>
+            <b>Password :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" id="password"name="password"><br><br>
+            <input type="submit" value="Login">&nbsp;&nbsp;&nbsp;&nbsp;<button id="studentregister" onclick="s_reg()">Sign Up</button>
+        </div>
+        </form>
+
+        <form action="sregister/" method="POST">
+            {% csrf_token %}
+        <div id="register">
+                <h1>Student Registration</h1>
+            <b>First name :</b>&nbsp;&nbsp;&nbsp;<input type="text" id="fname"><br><br>
+            <b>Last name :</b>&nbsp;&nbsp;&nbsp;<input type="text" id="lname"><br><br>
+            <b>UserName :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="username"><br><br>
+            <b>Password :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" id="password"><br><br>
+            <b> Confirm Password :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" id="cpassword"><br><br>
+            <input type="submit" value="Register">
+
+        </div>
+      </div>
+        </form>
+
+
+        <script type="text/javascript">
+        document.getElementById("studentregister").addEventListener("click", function(event){
+         event.preventDefault()
+         });
+            function s_reg(){
+                document.getElementById('main').style.display="none";
+                document.getElementById('register').style.display="block";
+            }
+
+        </script>
+    </body>
+</html>
