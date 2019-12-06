@@ -1,0 +1,158 @@
+{% load static %}
+<html>
+    <head>
+        <title>Files Dashboard</title>
+        <link rel="stylesheet" href='{% static "css/input.css" %}'>
+        <style>
+
+                .row{
+                    display: flex;
+                    
+                }
+                .card {
+                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.705);
+                  background-color: white;
+                  transition: 0.3s;
+                  width: 20%;
+                  display: inline-block;
+                  margin: 20px;
+                  padding-bottom: 20px;
+                  /*height: auto;
+                  min-height: 60%; */
+                  flex: 3;
+                }
+
+                
+                
+                .card:hover {
+                  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+                  /* border-radius: 5%;
+                  border:2px solid black; */
+                  /* border-color: red; */
+                  /* border:2px solid black; */
+                }
+                
+                .container {
+                  padding: 2px 16px;
+                }
+
+                a{
+                    text-decoration: none;
+                    color: rgb(55, 71, 160);
+                }
+
+                img{
+                    object-fit: cover;
+                }
+
+                body{
+                    background-color: rgb(150, 223, 252);
+                }
+               
+               #para
+               {
+                   display: none;
+               }
+        </style>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+    </head>
+    
+    <body>
+        <form method="GET" id="form1">
+            <div class="row">
+                {% for i,j in filesdict.items %}
+                <div class="card" onclick="">
+                        <img src='{% static "images/note3.jpg" %}' alt="Document" style="width:100%">
+                        <div class="container">
+                          <h4>
+                          <!-- <a href="sdj" onclick="count1(this);document.getElementById('form1').submit()" name="anchor" id="anch">{{j}}</a> -->
+
+                         <b> <a href="" onclick="route(this); callcount(this) ;" name="anchor" id="anch">{{j}}</a></b></h4>
+
+                        </div>
+                </div>
+                
+                
+                {% endfor %}
+            </div>
+
+                
+
+                <input type="text" name="para" id="para">
+        </form>
+        
+
+        <!-- <a id="abcd">hellooo</a> -->
+
+        <!-- {% if images %}
+            {% for image in images %} -->
+                <!-- <img src="{{ MEDIA_URL }}/{{ image }}"><br> -->
+            <!-- {{MEDIA_URL}}/{{ image }}<br><br>
+            {% endfor %}
+        {% endif %} -->
+
+        <script>
+
+            // document.getElementById("anch").click(function(as){
+            //     as.preventDefault();
+            // })
+            
+            // let a = document.createElement('a');
+            // let linkText = document.createTextNode(text);
+            // a.appendChild(linkText);
+            // a.title = title;
+            // a.href = href;
+           a= document.getElementsByTagName('a');
+        //    console.log(a.length);
+            for(var i=0;i<a.length;i++){
+                a[i].href=a[i].textContent;
+                // document.getElementById('para').value=a[i].textContent;
+            
+                
+                s=a[i].href;
+                s_a=s.split('/');
+                s_b=s_a[s_a.length-1].split('.')
+                a[i].textContent=s_b[0].toUpperCase();
+            }
+            count=0
+            temp=document.getElementsByName('anchor');
+            // document.getElementById("abcd").addEventListener("click", function(event){
+            //         count+=1
+                
+            //         console.log(count)
+            // });
+
+
+           
+            
+            function callcount(this1)
+            {
+                this1.href=this1.textContent;
+
+                document.getElementById('para').value=this1.textContent;
+                document.getElementById('para').innerHTML=this1.textContent;
+                console.log(this1.textContent)
+                console.log("hii "+document.getElementById('para').innerHTML);
+                // $.get('count/', function (data) {
+                    
+                // });
+                    
+                // window.location="http://127.0.0.1:8000/notesapp/sroute/slogin/view_course/count/";
+            }
+            // console.log(document.getElementById('abcd').textContent);
+
+            function route(this1){
+                // console.log("calleddd");
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:8000/notesapp/sroute/slogin/view_course/count/",
+                    data : document.getElementById('para').innerHTML
+                });
+                // window.open("http://127.0.0.1:8000/notesapp/sroute/slogin/view_course/count/",'_blank');
+            }
+        
+        </script>
+        <!-- <a></a> -->
+    </body>
+</html>

@@ -6,21 +6,21 @@
             <link rel="stylesheet" href='{% static "css/input.css" %}'>
 
     </head>
-    <body>
+    <body background='{% static "images/b6.jpg" %}'>
         <form action="slogin/" method="POST">
-            {% csrf_token %}
+           {% csrf_token %}
           <div class="topbar"><img  class="logo" src='{% static "images/collegelogo.png" %}' width="205px" height="70px" ><span style="z-index: 2;position: fixed;left: 46.5%;top: 4%;font-size: 25px;color:white;justify-content: center;text-align: center;"></span></div>
            <div class="form"> 
         <div id="main">
             <h1>Student Login</h1>
-            <b>UserName :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="username" name="username"><br><br>
+            <b>User Name :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="username" name="username"><br><br>
             <b>Password :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" id="password"name="password"><br><br>
-            <input type="submit" value="Login">&nbsp;&nbsp;&nbsp;&nbsp;<button id="studentregister" onclick="s_reg()">Sign Up</button>
+            <input type="submit" value="Login">&nbsp;&nbsp;&nbsp;&nbsp;<button id="studentregister" onclick="s_reg()" style="color: #2a6aaa; background-color: white; border-color: white;" >Sign Up</button>
         </div>
         </form>
 
         <form action="sregister/" method="POST">
-            {% csrf_token %}
+           {% csrf_token %}
         <div id="register">
                 <h1>Student Registration</h1>
             <b>First name :</b>&nbsp;&nbsp;&nbsp;<input type="text" id="fname" name="fname"><br><br>
@@ -28,22 +28,40 @@
             <b>UserName :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="username"name="username"><br><br>
             <b>Password :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" id="password" name="password"><br><br>
             <b> Confirm Password :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" id="cpassword" name="cpassword"><br><br>
+            <b>Register Courses</b><br><br>
+               <b>Course 1 :</b>&nbsp;&nbsp;&nbsp;<input type="text" id="cname" name="c1"><br><br>
+               <b>Course 2 :</b>&nbsp;&nbsp;&nbsp;<input type="text" id="cname" name="c2"><br><br>
+               <b>Course 3 :</b>&nbsp;&nbsp;&nbsp;<input type="text" id="cname" name="c3"><br><br>
+               <b>Course 4 :</b>&nbsp;&nbsp;&nbsp;<input type="text" id="cname" name="c4"><br><br>
+            
+            <!-- <button onclick="add_course()" id="add_course_button">Add Course</button><br><br> -->
+            
             <input type="submit" value="Register">
 
         </div>
       </div>
         </form>
-    </div>
+    
 
 
         <script type="text/javascript">
         document.getElementById("studentregister").addEventListener("click", function(event){
          event.preventDefault()
          });
+        document.getElementById("add_course_button").addEventListener("click", function(event){
+         event.preventDefault()
+         });
             function s_reg(){
                 document.getElementById('main').style.display="none";
                 document.getElementById('register').style.display="block";
             }
+            
+            // function add_course(){
+            //     document.getElementById('courses').style.display="block";
+            //     s='';
+            //     s+="<b>Course ID :</b>&nbsp;&nbsp;&nbsp;<input type='text' id='cid' name='cid'><br><br>";
+            //     document.getElementById('courses').innerHTML+=s;
+            // }
 
         </script>
     </body>

@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>An example</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>
+            function call_counter(url, pk) {
+                window.open(url);
+                $.get('YOUR_VIEW_HERE/'+pk+'/', function (data) {
+                    alert("counter updated!");
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="call_counter('http://www.google.com', 12345);">
+            I update object 12345
+        </button>
+        <button onclick="call_counter('http://www.yahoo.com', 999);">
+            I update object 999
+        </button>
+    </body>
+</html>

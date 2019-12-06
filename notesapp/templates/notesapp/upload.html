@@ -1,21 +1,137 @@
 {% load static %}
 <head>
     <link rel="stylesheet" href='{% static "css/input.css" %}'>
-    <title>Upload file</title>
+    <title>Faculty Dashboard</title>
+    <!-- <style>
+            .logout1{
+                background-color: white;
+                color: rgb(212, 22, 22);
+            }
+    </style> -->
 </head>
-{% block content %}
-<br><br>
-<div class="form">
-    <h2>Upload Files</h2>
-    <form action="upload_success/" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" id="browse" name="document"><br><br> 
-        <button type="submit">Upload file</button>
-    </form>
+<body background='{% static "images/b6.jpg" %}'>
 
-    {% if url %}
+    <br>
+    
+    <div class="topbar"><img  class="logo" src='{% static "images/collegelogo.png" %}' width="205px" height="70px" ><span style="z-index: 2;position: fixed;left: 46.5%;top: 4%;font-size: 25px;color:white;justify-content: center;text-align: center;"></span></div>
+    <div class="form">
+        <h2 style="background-color: rgb(207, 202, 202); color: black; border-radius: 7px;">Faculty Dashboard</h2><br><br>
+        <div id="buttonsdiv">
+        <button id="add_button" onclick="add_courses()">Add Course</button><br><br>
+        <button id="view_button_div" onclick="view_courses()">View Files</button><br><br>
+        <button id="upload_button" onclick="upload()">Upload Files</button><br><br>
+        </div>
         
-        <h3>Uploaded file:</h3><a href="{{ url }} " target="_blank">{{ url}}</a>
-    {% endif %}
-{% endblock %}
-</div>
+        
+        <div id="add_courses_div">
+            <form action="add_course/" method="post">
+                       {% csrf_token %}
+                    <h2>Add Course</h2>
+                    <b>Course ID :</b>&nbsp;&nbsp;&nbsp;<input type="text" id="cid" name="cid"><br><br>
+                    <b>Course Name :</b>&nbsp;&nbsp;&nbsp;<input type="text" id="cname" name="cname"><br><br>
+                    <b>Credits :</b>&nbsp;&nbsp;&nbsp;<input type="text" id="credits" name="credits"><br><br>
+                    <b>Coordinator :</b>&nbsp;&nbsp;&nbsp;<input type="text" id="coordinator" name="coordinator"><br><br>
+                    <button id="add" onclick="add()" >Add</button>&nbsp;&nbsp;&nbsp;<button id="back_add" onclick="backadd()" >Back</button>
+            </form>
+        </div>
+        
+        <div id="view_courses_div">
+            <form action="view_course/" method="post">
+                {% csrf_token %}
+                
+                        <h2>View Files</h2>
+                        <b>Course ID :</b>&nbsp;&nbsp;&nbsp;<input type="text" id="cid" name="cid"><br><br>
+                        <input type="submit" value="VIEW"><br><br> &nbsp;&nbsp;&nbsp;<button id="back_view" onclick="backview()" >Back</button>
+                
+            </form>
+        </div>
+        
+        
+        
+        
+        <div id="upload_div">
+            <form action="upload/" method="POST" enctype="multipart/form-data">
+               {% csrf_token %}
+                    <h2>Upload Files</h2>
+                    <b>Course ID :</b>&nbsp;&nbsp;&nbsp;<input type="text" id="cid" name="cid"><br><br>
+                    <input type="file" id="browse" name="document"><br><br> 
+                    <button type="submit">Upload file</button>&nbsp;&nbsp;&nbsp;<button id="back_upload" onclick="backupload()" >Back</button>
+
+            </form>
+        </div>
+
+       <!-- {% if url %}
+    
+
+            <h3>Uploaded file:</h3><a href="{{ url }} " target="_blank">{{ url}}</a>
+        {% endif %} -->
+    <!-- <form action="logout/" method="POST">
+        {% csrf_token %} -->
+        <input type="submit" class="logout1" onclick="javascript:history.go(-1);" style="color: red; background-color: white;" value="Logout" >
+    <!-- </form> -->
+    <br><br>
+    </div>
+    
+    <script>
+        document.getElementById("add_button").addEventListener("click", function(event){
+         event.preventDefault()
+         });
+        document.getElementById("view_button_div").addEventListener("click", function(event){
+         event.preventDefault()
+         });
+        document.getElementById("upload_button").addEventListener("click", function(event){
+         event.preventDefault()
+         });
+         document.getElementById("back_add").addEventListener("click", function(event){
+         event.preventDefault()
+         });
+         document.getElementById("back_upload").addEventListener("click", function(event){
+         event.preventDefault()
+         });
+         document.getElementById("back_view").addEventListener("click", function(event){
+         event.preventDefault()
+         });
+        function add_courses(){
+            // document.getElementById('add_button').style.display='none';
+            // document.getElementById('view_button_div').style.display='none';
+            // document.getElementById('upload_button').style.display='none';
+            document.getElementById('buttonsdiv').style.display="none";
+            document.getElementById('add_courses_div').style.display='block';
+            
+        }
+        
+        function view_courses(){
+            document.getElementById('buttonsdiv').style.display="none";
+            document.getElementById('view_courses_div').style.display='block';
+            
+        }
+        
+        function upload(){
+            document.getElementById('buttonsdiv').style.display="none";
+            document.getElementById('upload_div').style.display='block';
+            
+        }
+
+        function backadd(){
+            console.log("cllll");
+            document.getElementById('add_courses_div').style.display='none';
+            document.getElementById('view_courses_div').style.display='none';
+            document.getElementById('upload_div').style.display='none';
+            document.getElementById('buttonsdiv').style.display="block";
+        }
+        function backview(){
+            console.log("cllll");
+            document.getElementById('add_courses_div').style.display='none';
+            document.getElementById('view_courses_div').style.display='none';
+            document.getElementById('upload_div').style.display='none';
+            document.getElementById('buttonsdiv').style.display="block";
+        }
+        function backupload(){
+            console.log("cllll");
+            document.getElementById('add_courses_div').style.display='none';
+            document.getElementById('view_courses_div').style.display='none';
+            document.getElementById('upload_div').style.display='none';
+            document.getElementById('buttonsdiv').style.display="block";
+        }
+    </script>
+</body>

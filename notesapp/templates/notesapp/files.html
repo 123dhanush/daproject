@@ -1,1 +1,28 @@
-<h1>HI FILES</h1>
+{% load static %}
+<html>
+    <head>
+        <title>Student Dashboard</title>
+        <link rel="stylesheet" href='{% static "css/input.css" %}'>
+        
+    </head>
+    <body background='{% static "images/b6.jpg" %}'>
+        <div class="topbar"><img  class="logo" src='{% static "images/collegelogo.png" %}' width="205px" height="70px" ><span style="z-index: 2;position: fixed;left: 46.5%;top: 4%;font-size: 25px;color:white;justify-content: center;text-align: center;"></span></div>
+        <div class="form">
+            <form action="view_course/" method="POST">
+                {% csrf_token %}
+                    <h2>Registered Courses</h2>
+                    <br>
+                    {% for i in courses %}
+                        <h2>{{i}}</h2>
+                    {% endfor %}   
+                    <br><Br>
+                        <input type="text" placeholder="Course ID" name="cid"><br><br>
+                        <button>View Notes</button><br><br>
+            </form>
+            <!-- <form action="logout/" method="POST">
+                {% csrf_token %} -->
+                <input type="submit" class="logout" onclick="javascript:history.go(-1);" value="Logout" style="color: red; background-color: white;" >
+            <!-- </form> -->
+        </div>
+    </body>
+</html>
